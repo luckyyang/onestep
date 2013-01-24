@@ -1,10 +1,24 @@
 <div class="span4">
-  <a href="<%= course_path(course) %>">
-    <div class="course_panel">
-      <img src="<%= poster_link course %>"></img>
-      <div class="course_info">
-        <h2> <%= course.title %> </h2>
-      </div>
+  <div class="course-panel">
+    <div class="poster-area" style="background-image: url(<%= poster_link course %>);">
+      <a data-toggle="modal" href="#<%= course.id %>">
+        <%= image_tag 'player_icon.png' %>
+      </a>
     </div>
-  </a>
+  </div>
+  <div class="course-info">
+    <h4> <%= course.cat %> :</h4>
+    <%= link_to course.title, course %>
+  </div>
 </div>
+
+<div class="modal" id="<%= course.id %>" style="display: none">
+  <button class="close" data-dismiss="modal">×</button>
+  <%= render 'shared/mini_player' %>
+</div>
+<style>
+  .modal {
+    width: 448px;
+  }
+</style>
+
